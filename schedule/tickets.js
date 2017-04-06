@@ -21,6 +21,7 @@ var ticketsSchedule = schedule.scheduleJob('*/1 * * * *', function(){
             logger.error(err);
         }
         else{
+            logger.info("实时价格:"+price);
             if(Math.abs(staticSell-price)>config.SELL_DIFF.LTC){
                 staticSell=price;
                 console.log("设置最新的staticSell为"+staticSell);

@@ -2,6 +2,8 @@
  * Created by yiweiguo on 2017/3/23.
  */
 TopClient = require('topSdk').ApiClient;
+var log4js = require('log4js');
+var logger = log4js.getLogger('normal');
 const APPKEY='23717081'
 const APPSECRET='76e3977da1f92eee2a48259458633c8f'
 const REST_URL='http://gw.api.taobao.com/router/rest'
@@ -22,7 +24,13 @@ exports.sendSms=function(content,phone){
         'rec_num':phone,
         'sms_template_code':SMS_TEMPLATE_CODE
     }, function(error, response) {
-        if (!error) console.log(response);
-        else console.log(error);
+        if (!error) {
+            console.log(response);
+            logger.info("发送提示短信成功")
+        }
+        else {
+            console.log(error);
+            logger.error(error);
+        }
     })
 }
